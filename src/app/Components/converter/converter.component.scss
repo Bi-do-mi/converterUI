@@ -1,0 +1,55 @@
+$color: rgba(251, 192, 45, 0.5);
+$transparent: rgba(0, 0, 0, 0);
+.leanerBack1 {
+  background: linear-gradient(-45deg,
+    $transparent 49.9%,
+    $color 49.9%, $color 80%,
+    $transparent 60%
+  ),
+  linear-gradient(-45deg,
+      $color 20%,
+      $transparent 10%
+  );
+  background-size: 2em 2em;
+  background-color: rgba(33, 33, 33, 1);
+}
+
+.converter{
+  min-width: 100%;
+  min-height: 100%;
+  position: absolute;
+}
+
+$color2: #ceeff1;
+$color3: #bad6ee;
+$color1: rgb(232, 232, 232);
+.back{
+  background-color: $color1;
+  background-image: linear-gradient(30deg, $color2 12%, transparent 12.5%, transparent 87%, $color2 87.5%, $color2),
+  linear-gradient(150deg, $color2 12%, transparent 12.5%, transparent 87%, $color2 87.5%, $color2),
+  linear-gradient(30deg, $color2 12%, transparent 12.5%, transparent 87%, $color2 87.5%, $color2),
+  linear-gradient(150deg, $color2 12%, transparent 12.5%, transparent 87%, $color2 87.5%, $color2),
+  linear-gradient(60deg, $color3 25%, transparent 25.5%, transparent 75%, $color3 75%, $color3),
+  linear-gradient(60deg, $color3 25%, transparent 25.5%, transparent 75%, $color3 75%, $color3);
+  background-size:40px 70px;
+  background-position: 0 0, 0 0, 20px 35px, 20px 35px, 0 0, 20px 35px;
+}
+.tcentr{
+  text-align: center;
+}
+.card-width{
+  min-width:500px;
+}
+.mrgn{
+  margin: 10px;
+}
+
+.topmrgn{
+  margin-top: 50px;
+}
+
+.table {
+  width: 100%;
+}
+
+

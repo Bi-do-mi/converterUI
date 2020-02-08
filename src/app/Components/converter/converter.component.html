@@ -1,0 +1,135 @@
+<div fxLayout="column" class="back converter">
+  <div class="topmrgn" fxLayout="column" fxLayoutAlign="center center">
+    <mat-card fxLayout="column" fxLayoutAlign="space-around center">
+      <mat-card-content class="card-width">
+        <div>
+          <h3 fxFlex="100" class="tcentr">
+            КОНВЕРТЕР
+          </h3>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+          <div>
+            <mat-form-field>
+              <mat-select [formControl]="firstSelectCtrl">
+                <mat-option *ngFor="let valute of dc?.valute" [value]="valute?.name">
+                  {{valute?.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-select [formControl]="secondSelectCtrl">
+                <mat-option *ngFor="let valute of dc?.valute" [value]="valute?.name">
+                  {{valute?.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+          <div>
+            <mat-form-field>
+              <mat-label>{{firstLabel}}</mat-label>
+              <input matInput [formControl]="firstInputCtrl" type="number"
+                     (change)="calculate($event.target.value, null)">
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-label>{{secondLabel}}</mat-label>
+              <input matInput [formControl]="secondInputCtrl" type="number"
+                     (change)="calculate(null, $event.target.value)">
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+          <button mat-raised-button="" color="accent" (click)="convert()">
+            Конвертировать
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="topmrgn" fxLayout="column" fxLayoutAlign="center center">
+    <mat-card fxLayout="column" fxLayoutAlign="space-around center" fxFlex="100">
+      <mat-card-content>
+        <div fxLayout="column" fxLayoutAlign="space-around center" fxFlex="100">
+          <div>
+            <h3 fxFlex="100" class="tcentr">
+              ИСТОРИЯ
+            </h3>
+          </div>
+          <div fxFlex="row" fxFlexAlign="space-around center">
+            <!--datekeaper-->
+            <mat-form-field class="mrgn">
+              <mat-label>Выберите дату</mat-label>
+              <input matInput [matDatepicker]="picker" [formControl]="date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <!--select 1-->
+            <mat-form-field class="mrgn">
+              <mat-select [formControl]="firstFindSelectCtrl">
+                <mat-option *ngFor="let valute of dc?.valute" [value]="valute?.name">
+                  {{valute?.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <!--select 2-->
+            <mat-form-field class="mrgn">
+              <mat-select [formControl]="secondFindSelectCtrl">
+                <mat-option *ngFor="let valute of dc?.valute" [value]="valute?.name">
+                  {{valute?.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button mat-raised-button="" color="accent" class="mrgn"
+                    (click)="findConvertation()">Искать
+            </button>
+          </div>
+          <div class="table" fxLayout="column" fxLayoutAlign="center stretch" fxFlex="100">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+              <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
+
+              <!-- sourceCurrency -->
+              <ng-container matColumnDef="sourceCurrency">
+                <th mat-header-cell *matHeaderCellDef> Исходная валюта</th>
+                <td mat-cell *matCellDef="let element"> {{element.sourceCurrency}}</td>
+              </ng-container>
+
+              <!-- Целевая валюта -->
+              <ng-container matColumnDef="targetCurrency">
+                <th mat-header-cell *matHeaderCellDef> Целевая валюта</th>
+                <td mat-cell *matCellDef="let element"> {{element.targetCurrency}}</td>
+              </ng-container>
+
+              <!-- sourceAmount Column -->
+              <ng-container matColumnDef="sourceAmount">
+                <th mat-header-cell *matHeaderCellDef> Исходная сумма</th>
+                <td mat-cell *matCellDef="let element"> {{element.sourceAmount}}</td>
+              </ng-container>
+
+              <!-- calculatedAmount Column -->
+              <ng-container matColumnDef="calculatedAmount">
+                <th mat-header-cell *matHeaderCellDef> Получаемая сумма</th>
+                <td mat-cell *matCellDef="let element"> {{element.calculatedAmount}}</td>
+              </ng-container>
+
+              <!-- date Column -->
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef> Дата</th>
+                <td mat-cell *matCellDef="let element"> {{element.date}}</td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
